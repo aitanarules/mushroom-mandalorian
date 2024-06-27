@@ -58,23 +58,64 @@ with st.container():
 )
 
 
-
-
-st.markdown("## Where to Find Mushrooms?")
-st.markdown("""Mushrooms thrive in various environments, making them a fascinating and rewarding subject for foragers. 
+with st.container():
+    left_column, right_column= st.columns((2))
+    with right_column:
+        st.header("Where to find mushrooms?")
+        st.write(
+            """
+            Mushrooms thrive in various environments, making them a fascinating and rewarding subject for foragers. 
             Here are some common places where you can find mushrooms:
             * Forests: Look around decaying wood, tree roots, and leaf litter.
             * Meadows and grasslands: Mushrooms often grow in grassy areas, especially after rainfall.
             * Gardens and yards: Check damp, shaded spots in your garden or backyard.
-            * Near Water sources: Streams, rivers, and lakesides are prime spots for mushroom growth.""")
+            * Near Water sources: Streams, rivers, and lakesides are prime spots for mushroom growth.
+            """
+        )
+    with left_column:
 
-st.markdown("## Why Choose Mushrooms Mandalorian?")
-st.markdown("""* Accuracy: Our AI model is trained on thousands of mushroom species to ensure precise identification.
+        path = "./images/lottie_mushroom.json"
+        with open(path,"r") as file: 
+            url = json.load(file) 
+                
+        st_lottie(url, 
+            reverse=True, 
+            height=400, 
+            width=400, 
+            speed=1, 
+            loop=True, 
+            quality='high', 
+            key='Car'
+)
+        
+
+
+with st.container():
+    left_column, right_column= st.columns((2))
+    with right_column:
+        st.header("Why Choose Mushrooms Mandalorian?")
+        st.write(
+            """
+            * Accuracy: Our AI model is trained on thousands of mushroom species to ensure precise identification.
             * Convenience: Easily identify mushrooms anywhere, anytime, with just a photo.
-            * Safety: Make informed decisions and avoid poisonous mushrooms, protecting yourself and your loved ones.""")
+            * Safety: Make informed decisions and avoid poisonous mushrooms, protecting yourself and your loved ones.
+            """
+        )
+    with left_column:
 
-
-
+        path = "./images/lottie_star.json"
+        with open(path,"r") as file: 
+            url = json.load(file) 
+                
+        st_lottie(url, 
+            reverse=True, 
+            height=400, 
+            width=400, 
+            speed=1, 
+            loop=True, 
+            quality='high', 
+            key='Car'
+)
 
 
 
