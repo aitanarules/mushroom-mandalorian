@@ -54,7 +54,7 @@ with st.container():
             speed=1, 
             loop=True, 
             quality='high', 
-            key='Car'
+            key='mushroom'
 )
 
 
@@ -74,7 +74,7 @@ with st.container():
         )
     with left_column:
 
-        path = "./images/lottie_mushroom.json"
+        path = "./images/lottie_finding.json"
         with open(path,"r") as file: 
             url = json.load(file) 
                 
@@ -85,7 +85,7 @@ with st.container():
             speed=1, 
             loop=True, 
             quality='high', 
-            key='Car'
+            key='find'
 )
         
 
@@ -114,7 +114,7 @@ with st.container():
             speed=1, 
             loop=True, 
             quality='high', 
-            key='Car'
+            key='star'
 )
 
 
