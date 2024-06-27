@@ -92,7 +92,7 @@ with st.container():
 
 with st.container():
     left_column, right_column= st.columns((2))
-    with right_column:
+    with left_column:
         st.header("Why Choose Mushrooms Mandalorian?")
         st.write(
             """
@@ -101,7 +101,7 @@ with st.container():
             * Safety: Make informed decisions and avoid poisonous mushrooms, protecting yourself and your loved ones.
             """
         )
-    with left_column:
+    with right_column:
 
         path = "./images/lottie_star.json"
         with open(path,"r") as file: 
@@ -117,18 +117,14 @@ with st.container():
             key='star'
 )
 
+with st.container():
+    st.title("Testimonials")
+    st.write('"Mushrooms Mandalorian has been a game-changer for my foraging trips. The AI is incredibly accurate and fast!" – Sarah T. ')
+    st.write('"As a mushroom enthusiast, this app is a must-have. The interface is user-friendly, and the database is extensive." – John D.')
 
 
-# Testimonials:
-# "Mushrooms Mandalorian has been a game-changer for my foraging trips. The AI is incredibly accurate and fast!" – Sarah T.
-# "As a mushroom enthusiast, this app is a must-have. The interface is user-friendly, and the database is extensive." – John D.
 
-
-# Get in Touch:
-# For more information, support, or feedback, contact us at contact@mushroomsmandalorian.com. Follow us on social media for updates and tips!
-
-
-# Función para cargar imágenes con verificación de existencia
+# Function to upload images
 def load_image(image_path):
     if os.path.exists(image_path):
         return Image.open(image_path)
@@ -199,3 +195,27 @@ with col3:
     if image_toxic:
         st.image(image_toxic, caption=f"Toxic mushroom: {selected_image_toxic}")
 
+
+
+# Get in Touch:
+# For more information, support, or feedback, contact us at contact@mushroomsmandalorian.com. Follow us on social media for updates and tips!
+
+
+# with st.container():
+#     st.write("---")
+#     st.header("Ponte en contacto con nosotros!")
+#     st.write("##")
+#     contact_form = f"""
+#     <form action="https://formsubmit.co/{email_address}" method="POST">
+#         <input type="hidden" name="_captcha" value="false">
+#         <input type="text" name="name" placeholder="Tu nombre" required>
+#         <input type="email" name="email" placeholder="Tu email" required>
+#         <textarea name="message" placeholder="Tu mensaje aquí" required></textarea>
+#         <button type="submit">Enviar</button>
+#     </form>
+#     """
+#     left_column, right_column = st.columns(2)
+#     with left_column:
+#         st.markdown(contact_form, unsafe_allow_html=True)
+#     with right_column:
+#         st.empty()
