@@ -46,10 +46,7 @@ with st.container():
         path = "./images/lottie_mushroom.json"
         with open(path,"r") as file: 
             url = json.load(file) 
-        
-    
-        st.title("Adding Lottie Animation in Streamlit WebApp") 
-        
+                
         st_lottie(url, 
             reverse=True, 
             height=400, 
@@ -98,66 +95,66 @@ def load_image(image_path):
         st.error(f"Can't find the image right now :-) {image_path}")
         return None
 
-# Crear dos columnas
+# Create 3 columns
 col1, col2, col3 = st.columns(3)
 
 # Edible mushrooms
 with col1:
     st.markdown("## Edible mushrooms")
     st.markdown("Here we will show you some pictures of edible mushrooms. You can eat them without any danger.")
-    images_yellow = [
+    images_edible = [
         {"file": "images/edible_1.jpg", "caption": "Agaricus augustus"},
         {"file": "images/edible_2.jpg", "caption": "Mycena haematopus"},
         {"file": "images/edible_3.jpg", "caption": "Truffles"}
     ]
 
-    selected_image_yellow = st.select_slider(
+    selected_image_edible = st.select_slider(
         "Edible mushrooms here:",
-        options=[img['caption'] for img in images_yellow]
+        options=[img['caption'] for img in images_edible]
     )
 
-    image_file_yellow = next(img['file'] for img in images_yellow if img['caption'] == selected_image_yellow)
-    image_yellow = load_image(image_file_yellow)
-    if image_yellow:
-        st.image(image_yellow, caption=f"Edible mushroom: {selected_image_yellow}")
+    image_file_edible = next(img['file'] for img in images_edible if img['caption'] == selected_image_edible)
+    image_edible = load_image(image_file_edible)
+    if image_edible:
+        st.image(image_edible, caption=f"Edible mushroom: {selected_image_edible}")
 
 with col2:
     st.markdown("## Non edible mushrooms")
     st.markdown("Here we will show you some pictures of NON edible mushrooms.")
-    images_blue = [
+    images_non_edible = [
         {"file": "images/non_edible_1.jpg", "caption": "Fomitopsis mounceae"},
         {"file": "images/non_edible_2.jpg", "caption": "Hydnum repandum"},
         {"file": "images/non_edible_3.jpg", "caption": "Omphalotus olearius"}
 
     ]
 
-    selected_image_blue = st.select_slider(
+    selected_image_non_edible = st.select_slider(
         "Non edible mushrooms here:",
-        options=[img['caption'] for img in images_blue]
+        options=[img['caption'] for img in images_non_edible]
     )
 
-    image_file_blue = next(img['file'] for img in images_blue if img['caption'] == selected_image_blue)
-    image_blue = load_image(image_file_blue)
-    if image_blue:
-        st.image(image_blue, caption=f"Non edible mushroom: {selected_image_blue}")
+    image_file_non_edible = next(img['file'] for img in images_non_edible if img['caption'] == selected_image_non_edible)
+    image_non_edible = load_image(image_file_non_edible)
+    if image_non_edible:
+        st.image(image_non_edible, caption=f"Non edible mushroom: {selected_image_non_edible}")
 
 with col3:
     st.markdown("## Toxic mushrooms")
     st.markdown("You may eat them and not die, but definetely you will feel bad after it.")
-    images_green = [
-        {"file": "images/toxic_1.jpg", "caption": "Amanita virosa"},
+    images_toxic = [
+        {"file": "images/toxic_1.jpg", "caption": "Amanita augusta"},
         {"file": "images/toxic_2.jpg", "caption": "Phlebia tremellosa"},
         {"file": "images/toxic_3.jpg", "caption": "Omphalotus illudens"},
 
     ]
 
-    selected_image_green = st.select_slider(
+    selected_image_toxic = st.select_slider(
         "Toxic mushrooms here:",
-        options=[img['caption'] for img in images_green]
+        options=[img['caption'] for img in images_toxic]
     )
 
-    image_file_green = next(img['file'] for img in images_green if img['caption'] == selected_image_green)
-    image_green = load_image(image_file_green)
-    if image_green:
-        st.image(image_green, caption=f"Toxic mushroom: {selected_image_green}")
+    image_file_toxic = next(img['file'] for img in images_toxic if img['caption'] == selected_image_toxic)
+    image_toxic = load_image(image_file_toxic)
+    if image_toxic:
+        st.image(image_toxic, caption=f"Toxic mushroom: {selected_image_toxic}")
 
