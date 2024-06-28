@@ -3,5 +3,5 @@ Pillow
 streamlit-lottie
 tensorflow
 numpy
-tensorflow.keras.models
-tensorflow.keras.losses.SparseCategoricalCrossentropy
+# tensorflow.keras.models
+# tensorflow.keras.losses.SparseCategoricalCrossentropy
