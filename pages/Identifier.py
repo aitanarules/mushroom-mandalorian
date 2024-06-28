@@ -5,6 +5,8 @@ import numpy as np
 from tensorflow.keras.models import load_model
 
 st.set_page_config(page_title="Identifier", page_icon="🔎")
+st.sidebar.success("Choose a page")
+
 st.title("Identify the mushroom!")
 st.write("""This page will help you identify a mushroom. For the moment, our application focuses on images with single object identification.
          Therefore, it may provide bad results when using images with multiple mushroom objects or not mushroom identified images.""")
