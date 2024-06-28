@@ -3,20 +3,22 @@ from PIL import Image
 import tensorflow as tf
 import numpy as np
 from tensorflow.keras.models import load_model
+from tensorflow.keras.losses import SparseCategoricalCrossentropy
 
 st.set_page_config(page_title="Identifier", page_icon="🔎")
 st.sidebar.success("Choose a page")
 
 st.title("Identify the mushroom!")
-st.write("""This page will help you identify a mushroom species. For the moment, our application focuses on images with single object identification.
-         Therefore, it may provide bad results when using images with multiple mushroom objects or not mushroom identified images.
-         
-         The species it is able to identy are the following:
-         3 species:   
-         * Agaricus augustus(edible)
-         * Boletus pallidus(edible)
-         * Daedaleopsis confragosa(toxic)
-         """)
+st.write("""
+    This page will help you identify a mushroom species. For the moment, our application focuses on images with single object identification.
+    Therefore, it may provide bad results when using images with multiple mushroom objects or not mushroom identified images.
+    
+    The species it is able to identify are the following:
+    3 species:   
+    * Agaricus augustus(edible)
+    * Boletus pallidus(edible)
+    * Daedaleopsis confragosa(toxic)
+    """)
 
 # Upload file
 uploaded_file = st.file_uploader("Choose a picture...", type=["png", "jpg", "jpeg"])
@@ -46,7 +48,7 @@ if uploaded_file is not None:
 
     # Load the saved model
     try:
-        shallow_cnn = load_model("./models/3cat_cnn.h5")
+        shallow_cnn = load_model("./models/3cat_cnn.h5", custom_objects={'SparseCategoricalCrossentropy': SparseCategoricalCrossentropy})
     except Exception as e:
         st.error(f"Error loading the model: {e}")
         st.stop()
@@ -59,7 +61,7 @@ if uploaded_file is not None:
         st.stop()
 
     # Ensure that predictions contain expected number of classes
-    if predictions.shape[1] != 4:
+    if predictions.shape[1] != 3:  # Should be 3 instead of 4, reflecting the classes you have
         st.error("Unexpected number of predictions. Check the model and the input image.")
         st.stop()
 
@@ -67,8 +69,7 @@ if uploaded_file is not None:
     predicted_class_index = np.argmax(predictions[0])
 
     # List of class names
-    class_names = ["Agaricus augustus", "Boletus pallidus",  "Daedaleopsis confragosa"]
-
+    class_names = ["Agaricus augustus", "Boletus pallidus", "Daedaleopsis confragosa"]
 
     # Get the predicted class name
     predicted_class_name = class_names[predicted_class_index]
@@ -81,4 +82,3 @@ if uploaded_file is not None:
     """
 
     st.markdown(result_html, unsafe_allow_html=True)
-    st.markdown(predictions, predicted_class_index)
