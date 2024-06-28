@@ -53,13 +53,13 @@ if uploaded_file is not None:
     if 'Edible' in predicted_class_name:
         result_html = f"""
         <div style="background-color: #8dff33; padding: 20px; border-radius: 10px; text-align: center;">
-            <h2 style="color: #000000;"This mushroom is EDIBLE with an {(predictions[0]+predictions[1])*100}% probability</h2>
+            <h2 style="color: #000000;>"This mushroom is EDIBLE with an {(predictions[0]+predictions[1])*100}% probability</h2>
         </div>
         """
     else:
         result_html = f"""
         <div style="background-color: #ff5733; padding: 20px; border-radius: 10px; text-align: center;">
-            <h2 style="color: #000000;"This mushroom is NON EDIBLE with an {(predictions[2]+predictions[3])*100}% probability</h2>
+            <h2 style="color: #000000;>"This mushroom is NON EDIBLE with an {(predictions[2]+predictions[3])*100}% probability</h2>
         </div>
         """ 
 
