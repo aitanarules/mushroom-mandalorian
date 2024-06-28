@@ -58,14 +58,14 @@ if uploaded_file is not None:
     predicted_class_index = np.argmax(predictions[0])
 
     # List of class names
-    class_names = ["Edible mushroom", "Edible sporocap", "Poisonous sporocap", "Poisonous mushroom"]
+    class_names = ["Poisonous mushroom", "Poisonous sporocap",  "Edible sporocap", "Edible mushroom"]
 
     # Get the predicted class name
     predicted_class_name = class_names[predicted_class_index]
 
     # Calculate probabilities
-    edible_probability = (predictions[0][0] + predictions[0][1]) * 100
-    poisonous_probability = (predictions[0][2] + predictions[0][3]) * 100
+    poisonous_probability = (predictions[0][0] + predictions[0][1]) * 100
+    edible_probability = (predictions[0][2] + predictions[0][3]) * 100
 
     if 'Edible' in predicted_class_name:
         result_html = f"""
