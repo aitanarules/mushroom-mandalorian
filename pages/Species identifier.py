@@ -48,7 +48,7 @@ if uploaded_file is not None:
 
     # Load the saved model
     try:
-        shallow_cnn = load_model("./models/3cat_cnn.h5", custom_objects={'SparseCategoricalCrossentropy': SparseCategoricalCrossentropy})
+        shallow_cnn = load_model("./models/3cat_cnn.h5", custom_objects={'SparseCategoricalCrossentropy': tf.keras.losses.SparseCategoricalCrossentropy})
     except Exception as e:
         st.error(f"Error loading the model: {e}")
         st.stop()
