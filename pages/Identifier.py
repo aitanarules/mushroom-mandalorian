@@ -45,11 +45,26 @@ if uploaded_file is not None:
     predicted_class_index = np.argmax(predictions[0])
 
     # List of class names
-    class_names = ["edible_mushroom", "edible_sporocap", "poisonous_sporocap", "poisonous_mushroom"]
+    class_names = ["Edible mushroom", "Edible sporocap", "Poisonous sporocap", "Poisonous mushroom"]
 
     # Get the predicted class name
     predicted_class_name = class_names[predicted_class_index]
 
+    if 'Edible' in predicted_class_name:
+        result_html = f"""
+        <div style="background-color: #8dff33; padding: 20px; border-radius: 10px; text-align: center;">
+            <h2 style="color: #000000;"This mushroom is EDIBLE with an {(predictions[0]+predictions[1])*100}% probability</h2>
+        </div>
+        """
+    else:
+        result_html = f"""
+        <div style="background-color: #ff5733; padding: 20px; border-radius: 10px; text-align: center;">
+            <h2 style="color: #000000;"This mushroom is NON EDIBLE with an {(predictions[2]+predictions[3])*100}% probability</h2>
+        </div>
+        """ 
+
+    st.markdown(result_html, unsafe_allow_html=True)
+
     # Display the result
-    st.write(f"The image is predicted as: {predicted_class_name}")
-    st.write(f"Probabilities: {predictions[0]}")
+    # st.write(f"The image is predicted as: {predicted_class_name}")
+    # st.write(f"Probabilities: {predictions[0]}")
