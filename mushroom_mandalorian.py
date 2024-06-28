@@ -80,8 +80,8 @@ with st.container():
                 
         st_lottie(url, 
             reverse=True, 
-            height=400, 
-            width=400, 
+            height=300, 
+            width=300, 
             speed=1, 
             loop=True, 
             quality='high', 
