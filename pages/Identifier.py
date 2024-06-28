@@ -36,10 +36,23 @@ if uploaded_file is not None:
     img_array = img_array / 255.0  # Normalize the image
 
     # Load the saved model
-    shallow_cnn = load_model("./models/shallow_cnn.h5")
+    try:
+        shallow_cnn = load_model("./models/shallow_cnn.h5")
+    except Exception as e:
+        st.error(f"Error loading the model: {e}")
+        st.stop()
 
     # Make the prediction
-    predictions = shallow_cnn.predict(img_array)
+    try:
+        predictions = shallow_cnn.predict(img_array)
+    except Exception as e:
+        st.error(f"Error during prediction: {e}")
+        st.stop()
+
+    # Ensure that predictions contain expected number of classes
+    if predictions.shape[1] != 4:
+        st.error("Unexpected number of predictions. Check the model and the input image.")
+        st.stop()
 
     # Get the class with the highest probability
     predicted_class_index = np.argmax(predictions[0])
@@ -50,21 +63,21 @@ if uploaded_file is not None:
     # Get the predicted class name
     predicted_class_name = class_names[predicted_class_index]
 
+    # Calculate probabilities
+    edible_probability = (predictions[0][0] + predictions[0][1]) * 100
+    poisonous_probability = (predictions[0][2] + predictions[0][3]) * 100
+
     if 'Edible' in predicted_class_name:
         result_html = f"""
         <div style="background-color: #8dff33; padding: 20px; border-radius: 10px; text-align: center;">
-            <h2 style="color: #000000;>"This mushroom is EDIBLE with an {(predictions[0]+predictions[1])*100}% probability</h2>
+            <h2 style="color: #000000;">This mushroom is EDIBLE with a {edible_probability:.2f}% probability</h2>
         </div>
         """
     else:
         result_html = f"""
         <div style="background-color: #ff5733; padding: 20px; border-radius: 10px; text-align: center;">
-            <h2 style="color: #000000;>"This mushroom is NON EDIBLE with an {(predictions[2]+predictions[3])*100}% probability</h2>
+            <h2 style="color: #000000;">This mushroom is NON EDIBLE with a {poisonous_probability:.2f}% probability</h2>
         </div>
-        """ 
+        """
 
     st.markdown(result_html, unsafe_allow_html=True)
-
-    # Display the result
-    # st.write(f"The image is predicted as: {predicted_class_name}")
-    # st.write(f"Probabilities: {predictions[0]}")
