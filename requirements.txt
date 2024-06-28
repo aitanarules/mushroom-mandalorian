@@ -1,6 +1,6 @@
-streamlit
+streamlit==1.36.0
 Pillow
 streamlit-lottie
 tensorflow
 numpy
-tensorflow.keras.models
+# tensorflow.keras.models
