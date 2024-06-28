@@ -81,3 +81,4 @@ if uploaded_file is not None:
     """
 
     st.markdown(result_html, unsafe_allow_html=True)
+    print(predictions)
