@@ -46,7 +46,7 @@ if uploaded_file is not None:
 
     # Load the saved model
     try:
-        shallow_cnn = load_model("./models/shallow_cnn.h5")
+        shallow_cnn = load_model("./models/3cat_cnn.h5")
     except Exception as e:
         st.error(f"Error loading the model: {e}")
         st.stop()
@@ -74,11 +74,11 @@ if uploaded_file is not None:
     predicted_class_name = class_names[predicted_class_index]
 
     # Calculate probabilities
-    # result_html = f"""
-    # <div style="background-color: #ff5733; padding: 20px; border-radius: 10px; text-align: center;">
-    #     <h2 style="color: #000000;">This mushroom is {predicted_class_name} with a {predictions[0][predicted_class_index]:.2f}% probability</h2>
-    # </div>
-    # """
+    result_html = f"""
+    <div style="background-color: #ff5733; padding: 20px; border-radius: 10px; text-align: center;">
+        <h2 style="color: #000000;">This mushroom is {predicted_class_name} with a {predictions[0][predicted_class_index]:.2f}% probability</h2>
+    </div>
+    """
 
-    # st.markdown(result_html, unsafe_allow_html=True)
+    st.markdown(result_html, unsafe_allow_html=True)
     st.markdown(predictions, predicted_class_index)
